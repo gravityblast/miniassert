@@ -82,3 +82,20 @@ func TestEqual(t *testing.T) {
   )
 }
 
+func TestNil(t *testing.T) {
+  check(t,
+    "Nil() passing nil value",
+    "",
+    func() {
+      Nil(t, nil)
+    },
+  )
+
+  check(t,
+    "Nil() passing not nil value",
+    "Expected <true>(bool) to be nil",
+    func() {
+      Nil(t, true)
+    },
+  )
+}
