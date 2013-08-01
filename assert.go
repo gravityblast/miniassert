@@ -42,6 +42,13 @@ func True(t *testing.T, value interface{}) {
   }
 }
 
+func False(t *testing.T, value interface{}) {
+  testSuite.Reset()
+  if (value != false) {
+    testSuite.Errorf(t, "Expected <%v>(%s) to be false", value, reflect.TypeOf(value))
+  }
+}
+
 func Nil(t *testing.T, value interface{}) {
   testSuite.Reset()
   if (value != nil) {

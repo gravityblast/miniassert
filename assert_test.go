@@ -58,6 +58,30 @@ func TestTrue(t *testing.T) {
   )
 }
 
+func TestFalse(t *testing.T) {
+  check(t,
+    "False() passing a false value",
+    "",
+    func() {
+      False(t, false)
+    },
+  )
+  check(t,
+    "False() passing a true value",
+    "Expected <true>(bool) to be false",
+    func() {
+      False(t, true)
+    },
+  )
+  check(t,
+    "False() passing a not bool value",
+    "Expected <false>(string) to be false",
+    func() {
+      False(t, "false")
+    },
+  )
+}
+
 func TestEqual(t *testing.T) {
   check(t,
     "Equal() passing 2 different values",
