@@ -11,12 +11,18 @@ Mini assert testing framework for the Go language
       assert "github.com/pilu/miniassert"
     )
 
+    type Foo struct {}
+
     func TestSomething(t *testing.T) {
-      var err error
       assert.Equal(t, "Hello World", Hello())
       assert.True(t, true)
       assert.False(t, false)
+
+      var err error
       assert.Nil(t, err)
+
+      foo := &Foo{}
+      assert.Type(t, "*hello.Foo", foo)
     }
 
 Run `go test` as usual.
