@@ -123,3 +123,36 @@ func TestNil(t *testing.T) {
     },
   )
 }
+
+func TestType(t *testing.T) {
+  check(t,
+    "Type() passing 'string' and a string",
+    "",
+    func() {
+      Type(t, "string", "hello")
+    },
+  )
+
+  check(t,
+    "Type() passing 'string' and an int",
+    "Expected <1>(int) to be of type 'string'",
+    func() {
+      Type(t, "string", 1)
+    },
+  )
+
+  check(t,
+    "Type() passing 'string' and an nil",
+    "Expected <1>(int) to be of type 'string'",
+    func() {
+      Type(t, "string", 1)
+    },
+  )
+  check(t,
+    "Type() passing 'string' and nil",
+    "Expected <<nil>>(<nil>) to be of type 'string'",
+    func() {
+      Type(t, "string", nil)
+    },
+  )
+}

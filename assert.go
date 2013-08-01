@@ -56,6 +56,14 @@ func Nil(t *testing.T, value interface{}) {
   }
 }
 
+func Type(t *testing.T, expectedType string, value interface{}) {
+  testSuite.Reset()
+  valueType := fmt.Sprintf("%v", reflect.TypeOf(value))
+  if expectedType != valueType {
+    testSuite.Errorf(t, "Expected <%v>(%v) to be of type '%s'", value, reflect.TypeOf(value), expectedType)
+  }
+}
+
 func Equal(t *testing.T, expected, actual interface{}) {
   testSuite.Reset()
   if expected != actual {
