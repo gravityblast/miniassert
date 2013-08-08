@@ -104,6 +104,28 @@ func TestEqual(t *testing.T) {
       Equal(t, 2, "2")
     },
   )
+
+  a := map[string]string { "foo": "bar" }
+  b := map[string]string { "foo": "bar" }
+  c := map[string]string { "bar": "baz" }
+
+  check(t,
+    "Equal() passing 2 equal maps",
+    "",
+    func() {
+      Equal(t, a, b)
+    },
+  )
+
+  check(t,
+    "Equal() passing 2 different maps",
+    "Expected <map[foo:bar]>(map[string]string), got <map[bar:baz]>(map[string]string)",
+
+    func() {
+      Equal(t, a, c)
+    },
+  )
+
 }
 
 func TestNil(t *testing.T) {

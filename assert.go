@@ -66,7 +66,7 @@ func Type(t *testing.T, expectedType string, value interface{}) {
 
 func Equal(t *testing.T, expected, actual interface{}) {
   testSuite.Reset()
-  if expected != actual {
+  if !reflect.DeepEqual(expected, actual) {
     testSuite.Errorf(t, "Expected <%v>(%s), got <%v>(%s)", expected, reflect.TypeOf(expected), actual, reflect.TypeOf(actual))
   }
 }
