@@ -1,8 +1,9 @@
 package miniassert
 
 import (
-  "testing"
   "fmt"
+  "runtime"
+  "testing"
   "reflect"
 )
 
@@ -18,7 +19,12 @@ type suite struct {
 
 func (s *suite) Errorf(t *testing.T, message string, args ...interface{}) {
   s.lastError = fmt.Sprintf(message, args...)
-  t.Error(s.lastError)
+  text := s.lastError
+  _, file, line, ok := runtime.Caller(2)
+  if ok {
+    text = fmt.Sprintf("%s, in %s:%d", text, file, line)
+  }
+  t.Error(text)
 }
 
 func (s *suite) Reset() {
