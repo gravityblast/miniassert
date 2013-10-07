@@ -62,6 +62,26 @@ func Nil(t *testing.T, value interface{}) {
   }
 }
 
+func NotNil(t *testing.T, v interface{}) {
+  testSuite.Reset()
+
+  isNil := false
+  value := reflect.ValueOf(v)
+
+  if v == nil {
+    isNil = true
+  } else {
+    switch value.Kind() {
+    case reflect.Chan, reflect.Func, reflect.Interface, reflect.Map, reflect.Ptr, reflect.Slice, reflect.UnsafePointer:
+      isNil = value.IsNil()
+    }
+  }
+
+  if isNil {
+    testSuite.Errorf(t, "Expected <%v>(%v) to not be nil", v, reflect.TypeOf(v))
+  }
+}
+
 func Type(t *testing.T, expectedType string, value interface{}) {
   testSuite.Reset()
   valueType := fmt.Sprintf("%v", reflect.TypeOf(value))

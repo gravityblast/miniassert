@@ -128,6 +128,8 @@ func TestEqual(t *testing.T) {
 
 }
 
+type testStruct struct{}
+
 func TestNil(t *testing.T) {
   check(t,
     "Nil() passing nil value",
@@ -137,11 +139,58 @@ func TestNil(t *testing.T) {
     },
   )
 
+  var i interface{}
+  check(t,
+    "Nil() passing nil interface",
+    "",
+    func() {
+      Nil(t, i)
+    },
+  )
+
   check(t,
     "Nil() passing not nil value",
     "Expected <true>(bool) to be nil",
     func() {
       Nil(t, true)
+    },
+  )
+}
+
+func TestNotNil(t *testing.T) {
+  check(t,
+    "NotNil() passing a string",
+    "",
+    func() {
+      NotNil(t, "foo")
+    },
+  )
+
+  check(t,
+    "NotNil() passing nil value",
+    "Expected <<nil>>(<nil>) to not be nil",
+    func() {
+      NotNil(t, nil)
+    },
+  )
+
+  items := make(map[string]*testStruct)
+
+  check(t,
+    "NotNil() passing nil struct",
+    "Expected <<nil>>(*miniassert.testStruct) to not be nil",
+    func() {
+      NotNil(t, items["foo"])
+    },
+  )
+
+  var i interface{}
+
+  check(t,
+    "NotNil() passing nil interface",
+    "Expected <<nil>>(<nil>) to not be nil",
+    func() {
+      NotNil(t, i)
     },
   )
 }
