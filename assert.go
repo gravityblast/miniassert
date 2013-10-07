@@ -43,21 +43,21 @@ func init() {
 
 func True(t *testing.T, value interface{}) {
   testSuite.Reset()
-  if (value != true) {
+  if value != true {
     testSuite.Errorf(t, "Expected <%v>(%s) to be true", value, reflect.TypeOf(value))
   }
 }
 
 func False(t *testing.T, value interface{}) {
   testSuite.Reset()
-  if (value != false) {
+  if value != false {
     testSuite.Errorf(t, "Expected <%v>(%s) to be false", value, reflect.TypeOf(value))
   }
 }
 
 func Nil(t *testing.T, value interface{}) {
   testSuite.Reset()
-  if (value != nil) {
+  if value != nil {
     testSuite.Errorf(t, "Expected <%v>(%s) to be nil", value, reflect.TypeOf(value))
   }
 }
