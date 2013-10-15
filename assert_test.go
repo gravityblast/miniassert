@@ -148,11 +148,37 @@ func TestNil(t *testing.T) {
     },
   )
 
+  items := make(map[string]*testStruct)
   check(t,
-    "Nil() passing not nil value",
+    "Nil() passing nil struct",
+    "",
+    func() {
+      Nil(t, items["foo"])
+    },
+  )
+
+
+  check(t,
+    "Nil() passing boolean",
     "Expected <true>(bool) to be nil",
     func() {
       Nil(t, true)
+    },
+  )
+
+  check(t,
+    "Nil() passing string",
+    "Expected <foo>(string) to be nil",
+    func() {
+      Nil(t, "foo")
+    },
+  )
+
+  check(t,
+    "Nil() passing struct",
+    "Expected <&{}>(*miniassert.testStruct) to be nil",
+    func() {
+      Nil(t, &testStruct{})
     },
   )
 }

@@ -1,8 +1,7 @@
-# miniassert
+/*
+package Miniassert is a small assert library.
 
-Mini assert testing framework for the Go language
-
-## Usage
+Usage:
 
     package hello
 
@@ -32,8 +31,5 @@ Mini assert testing framework for the Go language
     }
 
 Run `go test` as usual.
-
-## Author
-
-* [Andrea Franz](http://gravityblast.com)
-
+*/
+package miniassert
