@@ -1,19 +1,18 @@
 package miniassert
 
 import (
-  "reflect"
+	"reflect"
 )
 
 func isNil(value interface{}) bool {
-  if value == nil {
-    return true
-  }
+	if value == nil {
+		return true
+	}
 
-  v := reflect.ValueOf(value)
-  if v.Kind() == reflect.Ptr {
-    return v.IsNil()
-  }
+	v := reflect.ValueOf(value)
+	if v.Kind() == reflect.Ptr {
+		return v.IsNil()
+	}
 
-  return false
+	return false
 }
-
